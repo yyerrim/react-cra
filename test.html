@@ -1,0 +1,33 @@
+<script>
+    // // 얕은 복사
+    // const a = [1, 2, 3];
+    // const b = a;
+    // a[0] = 100; // a, b 둘 다 [100, 2, 3]으로 출력됨 : 참조자료형
+    // console.log(a);
+    // console.log(b);
+
+    // // 깊은 복사
+    // const a = [1, 2, 3];
+    // const b = [...a];
+    // a[0] = 100; // a는 [100, 2, 3] b는 [1, 2, 3]으로 출력됨
+    // console.log(a);
+    // console.log(b);
+
+    // 반복문
+    const a = [1, 2, 3];
+    a['x'] = 4;
+    for (let i = 0; i < a.length; i++) {
+        console.log(a[i]);
+    } // x 출력 안됨
+    for (let key in a) { // key에 index가 넘어옴
+        console.log(key);
+    } // x 출력됨
+    for (let value of a) {
+        console.log(value);
+    } // x 출력 안됨
+    a.forEach((value, index, array) => {
+        console.log(value); // 값 출력
+        console.log(index); // index 출력
+        console.log(array); // 배열 자체 출력
+    });
+</script>
