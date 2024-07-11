@@ -52,7 +52,7 @@ const Nav = (props) => {
     // PDF 2.80
     const remove = (index) => {
         const updateList = [...list];
-        updateList.splice(index, 1); // splice : 지정한 index 1개 없앨때 사용
+        updateList.splice(index, 1); // splice(index, 1) : 지정한 index 1개 없애기
         setList(updateList);
     };
 
@@ -104,7 +104,9 @@ const Nav = (props) => {
                             updateList[updateIndex] = { "url": url, "desc": value };
                             setList(updateList);
                             setIsUpdate(false);
-                        }}>완료</button>
+                        }}>
+                            완료
+                        </button>
                     </div>
                 ) : null
             }
