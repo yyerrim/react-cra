@@ -10,7 +10,7 @@ import styles from './App.module.css';
 import Header from './Header';
 import Nav from './Nav';
 import { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation, useParams } from 'react-router-dom';
 
 // PDF 2.28 2.30
 // const Header = () => {
@@ -226,17 +226,34 @@ function App() {
   function JavaScript() {
     return (<h1>JavaScript</h1>)
   }
+
+  // function Component() {
+  //   const { address } = useParams();
+  //   const url = window.location.href;
+  //   return <h3>url : {url} 내용 : {address}</h3>
+  // }
+  // 강사님 풀이
+  function Component() {
+    const { url } = useParams();
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const desc = params.get('desc');
+    return <h3>url : {url} 내용 : {desc}</h3>
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
         <Header title='WEB' content='World Wide Web!' />
         <Nav list={list} />
         <Routes>
-          <Route path='/html' element={<HTML />}></Route>
+          {/* <Route path='/html' element={<HTML />}></Route>
           <Route path='/css' element={<CSS />}></Route>
-          <Route path='/js' element={<JavaScript />}></Route>
+          <Route path='/js' element={<JavaScript />}></Route> */}
+          {/* <Route path='/:address' element={<Component />} /> */}
+          {/* 강사님 풀이 */}
+          <Route path='/:url' element={<Component />} />
         </Routes>
-        {/* 번쩍번쩍 새로고침되는게 싫으면 Nav.js에 a 태그를 Link로 바꿔주면됨 */}
       </div>
     </BrowserRouter>
   );

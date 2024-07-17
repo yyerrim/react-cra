@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './App.module.css';
+import { Link } from 'react-router-dom';
 
 // PDF 2.51
 // const Nav = (props) => {
@@ -75,7 +76,10 @@ const Nav = (props) => {
                     list.map((v, i) => {
                         return (
                             <li key={i}>
-                                <a href={v.url}>{v.desc}</a>
+                                {/* <a href={v.url}>{v.desc}</a> */}
+                                {/* 강사님 풀이 */}
+                                {/* <a href={`${v.url}?desc=${v.desc}`}>{v.desc}</a> */}
+                                <Link to={`${v.url}?desc=${v.desc}`}>{v.desc}</Link>
                                 <button onClick={() => showUpdate(i)}>수정</button>
                                 <button onClick={() => { remove(i); }}>삭제</button>
                             </li>
