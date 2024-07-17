@@ -10,6 +10,7 @@ import styles from './App.module.css';
 import Header from './Header';
 import Nav from './Nav';
 import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // PDF 2.28 2.30
 // const Header = () => {
@@ -152,11 +153,11 @@ function App() {
   // updateList에 데이터를 추가 ===> 추가된 데이터를 state에 반영
   // state가 변경되면 컴포넌트가 다시 렌더링됨 . nav에 넘겨주는 데이터도 다시 넘어가게됨 .
   // PDF 2.76
-  const [list, setList] = useState([
-    { url: '1.html', desc: 'HTML' },
-    { url: '2.html', desc: 'CSS' },
-    { url: '3.html', desc: 'JavaScript' }
-  ]);
+  // const [list, setList] = useState([
+  //   { url: '1.html', desc: 'HTML' },
+  //   { url: '2.html', desc: 'CSS' },
+  //   { url: '3.html', desc: 'JavaScript' }
+  // ]);
   // const append = () => {
   //   const data = parseInt(Math.random() * 10) + 1;
   //   const obj = { url: data, desc: data };
@@ -166,48 +167,78 @@ function App() {
   //   // console.log(list);
   // }
 
+  // return (
+  //   <div className="App">
+  //     {/* PDF 2.76 */}
+  //     {/* <button onClick={append}>추가</button> */}
+
+  //     {/* PDF 2.71 */}
+  //     <Nav list={list} />
+
+  //     {/* PDF 2.48 */}
+  //     {/* <Header title='WEB' content='World Wide Web!' /> */}
+  //     {/* PDF 2.49 */}
+  //     {/* <Nav
+  //       list1={{ url: '1.html', desc: 'HTML' }}
+  //       list2={{ url: '2.html', desc: 'CSS' }}
+  //       list3={{ url: '3.html', desc: 'JavaScript' }}
+  //     /> */}
+
+  //     {/* PDF 2.42 */}
+  //     {/* <Comment author={
+  //       {
+  //         avatarUrl: 'http://ggoreb.com/images/img_avatar1.png',
+  //         name: 'scott'
+  //       }
+  //     } /> */}
+
+  //     {/* Cards 가로로 가운데에 배치 */}
+  //     {/* <Cards src1="img_avatar1.png" src2="img_avatar2.png" src3="img_avatar3.png" /> */}
+
+  //     {/* Bootstrap Cards */}
+  //     {/* <BasicExample src="http://ggoreb.com/images/img_avatar1.png" />
+  //     <BasicExample src="http://ggoreb.com/images/img_avatar2.png" />
+  //     <BasicExample src="http://ggoreb.com/images/img_avatar3.png" /> */}
+
+  //     {/* PDF 2.37 */}
+  //     {/* <Profile name="abc" text="123" count="100" /> */}
+  //     {/* 값을 지정해둔 age를 count에 넣기 */}
+  //     {/* <Profile name="abc" text="123" count={age} /> JSX 내부에서 자바스크립트를 표현하려면 중괄호 사용 */}
+
+  //     {/* PDF 2.29 2.31 */}
+  //     <Header />
+  //     {/* <Nav /> */}
+  //   </div>
+  // );
+
+  // PDF 12. Router
+  const [list, setList] = useState([
+    { url: '/html', desc: 'HTML' },
+    { url: '/css', desc: 'CSS' },
+    { url: '/js', desc: 'JavaScript' }
+  ]);
+  function HTML() {
+    return (<h1>HTML</h1>)
+  }
+  function CSS() {
+    return (<h1>CSS</h1>)
+  }
+  function JavaScript() {
+    return (<h1>JavaScript</h1>)
+  }
   return (
-    <div className="App">
-      {/* PDF 2.76 */}
-      {/* <button onClick={append}>추가</button> */}
-
-      {/* PDF 2.71 */}
-      <Nav list={list} />
-
-      {/* PDF 2.48 */}
-      {/* <Header title='WEB' content='World Wide Web!' /> */}
-      {/* PDF 2.49 */}
-      {/* <Nav
-        list1={{ url: '1.html', desc: 'HTML' }}
-        list2={{ url: '2.html', desc: 'CSS' }}
-        list3={{ url: '3.html', desc: 'JavaScript' }}
-      /> */}
-
-      {/* PDF 2.42 */}
-      {/* <Comment author={
-        {
-          avatarUrl: 'http://ggoreb.com/images/img_avatar1.png',
-          name: 'scott'
-        }
-      } /> */}
-
-      {/* Cards 가로로 가운데에 배치 */}
-      {/* <Cards src1="img_avatar1.png" src2="img_avatar2.png" src3="img_avatar3.png" /> */}
-
-      {/* Bootstrap Cards */}
-      {/* <BasicExample src="http://ggoreb.com/images/img_avatar1.png" />
-      <BasicExample src="http://ggoreb.com/images/img_avatar2.png" />
-      <BasicExample src="http://ggoreb.com/images/img_avatar3.png" /> */}
-
-      {/* PDF 2.37 */}
-      {/* <Profile name="abc" text="123" count="100" /> */}
-      {/* 값을 지정해둔 age를 count에 넣기 */}
-      {/* <Profile name="abc" text="123" count={age} /> JSX 내부에서 자바스크립트를 표현하려면 중괄호 사용 */}
-
-      {/* PDF 2.29 2.31 */}
-      <Header />
-      {/* <Nav /> */}
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header title='WEB' content='World Wide Web!' />
+        <Nav list={list} />
+        <Routes>
+          <Route path='/html' element={<HTML />}></Route>
+          <Route path='/css' element={<CSS />}></Route>
+          <Route path='/js' element={<JavaScript />}></Route>
+        </Routes>
+        {/* 번쩍번쩍 새로고침되는게 싫으면 Nav.js에 a 태그를 Link로 바꿔주면됨 */}
+      </div>
+    </BrowserRouter>
   );
 }
 
